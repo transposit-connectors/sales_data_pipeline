@@ -9,6 +9,9 @@
       }, {
         "name": "transposit/slack_webhook:v2.*.*",
         "alias": "slack_webhook"
+      }, {
+        "name": "transposit/aws_s3:v3.*.*",
+        "alias": "aws_s3"
       }],
       "operations": [{
         "id": "webhook",
