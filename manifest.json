@@ -12,6 +12,9 @@
       }, {
         "name": "transposit/aws_s3:v3.*.*",
         "alias": "aws_s3"
+      }, {
+        "name": "transposit/gcp_bigquery:v1.*.*",
+        "alias": "gcp_bigquery"
       }],
       "operations": [{
         "id": "webhook",
