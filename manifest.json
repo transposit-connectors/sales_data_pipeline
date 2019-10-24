@@ -57,6 +57,22 @@
           "js": "pipeline_top.js",
           "lang": "js"
         }
+      }, {
+        "id": "abort_multipart_upload",
+        "tql": {
+          "tql": "SELECT * FROM aws_s3.abort_multipart_upload\n  WHERE Bucket='<required_string>'\n  AND Key='<required_string>'\n  AND uploadId='<required_string>'\n  AND x-amz-request-payer='requester'\n\n/*\n * For sample code and reference material, visit\n * https://www.transposit.com/docs/get-started/sql-quickstart\n */"
+        }
+      }, {
+        "id": "load_file",
+        "function": {
+          "parameters": [{
+            "name": "file_url",
+            "type": "STRING",
+            "required": true
+          }],
+          "js": "load_file.js",
+          "lang": "js"
+        }
       }],
       "dataConnections": [{
         "ref": "slack_identify.raw",
