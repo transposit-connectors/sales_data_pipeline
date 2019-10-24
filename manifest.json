@@ -73,6 +73,20 @@
           "js": "load_file.js",
           "lang": "js"
         }
+      }, {
+        "id": "get_object",
+        "tql": {
+          "parameters": [{
+            "name": "bucket",
+            "type": "STRING",
+            "required": true
+          }, {
+            "name": "key",
+            "type": "STRING",
+            "required": true
+          }],
+          "tql": "SELECT * FROM aws_s3.get_object\n  WHERE Bucket=@bucket\n  AND Key=@key"
+        }
       }],
       "dataConnections": [{
         "ref": "slack_identify.raw",

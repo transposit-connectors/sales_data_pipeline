@@ -1,8 +1,10 @@
 (params) => {
 
   //load file from url
+  //Region,Country,Item Type,Sales Channel,Order Priority,Order Date,Order ID,Ship Date,Units Sold,Unit Price,Unit Cost,Total Revenue,Total Cost,Total Profit
   const file_records = api.run("this.load_file",{file_url: params.file_url});
-  return file_records;
+  const new_ids = file_records.map(r => { return r[6]; });
+  return new_ids;
   
 //   // grab existing record ids from data warehouse
 //   const existing_record_ids = api.run("this.get_existing_records");
