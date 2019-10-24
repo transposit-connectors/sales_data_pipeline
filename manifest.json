@@ -90,6 +90,17 @@
           }],
           "tql": "SELECT * FROM aws_s3.get_object\n  WHERE Bucket=@bucket\n  AND Key=@key"
         }
+      }, {
+        "id": "execute_dw_query",
+        "tql": {
+          "tql": "SELECT rows FROM gcp_bigquery.execute_query\n  WHERE projectId='sales-data-pipeline'\nAND $body=(SELECT {\n    'query' : 'SELECT * FROM default.orderdata',\n  })\n\n"
+        }
+      }, {
+        "id": "lookup_dw_rows",
+        "function": {
+          "js": "lookup_dw_rows.js",
+          "lang": "js"
+        }
       }],
       "dataConnections": [{
         "ref": "slack_identify.raw",
