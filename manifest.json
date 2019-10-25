@@ -96,9 +96,25 @@
           "tql": "SELECT rows FROM gcp_bigquery.execute_query\n  WHERE projectId='sales-data-pipeline'\nAND $body=(SELECT {\n    'query' : 'SELECT * FROM default.orderdata',\n  })\n\n"
         }
       }, {
-        "id": "lookup_dw_rows",
+        "id": "untitled",
+        "function": {
+          "js": "untitled.js",
+          "lang": "js"
+        }
+      }, {
+        "id": "get_existing_records",
         "function": {
           "js": "lookup_dw_rows.js",
+          "lang": "js"
+        }
+      }, {
+        "id": "add_sales_rep",
+        "function": {
+          "parameters": [{
+            "name": "records",
+            "type": "ARRAY"
+          }],
+          "js": "add_sales_rep.js",
           "lang": "js"
         }
       }],
