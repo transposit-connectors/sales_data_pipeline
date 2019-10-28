@@ -15,6 +15,9 @@
       }, {
         "name": "transposit/gcp_bigquery:v1.*.*",
         "alias": "gcp_bigquery"
+      }, {
+        "name": "transposit/google_sheets:v1.*.*",
+        "alias": "google_sheets"
       }],
       "operations": [{
         "id": "webhook",
