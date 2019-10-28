@@ -144,6 +144,12 @@
           "js": "generate_region_totals.js",
           "lang": "js"
         }
+      }, {
+        "id": "ship_totals_to_google_sheets",
+        "function": {
+          "js": "ship_totals_to_google_sheets.js",
+          "lang": "js"
+        }
       }],
       "dataConnections": [{
         "ref": "slack_identify.raw",
