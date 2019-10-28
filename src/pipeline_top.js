@@ -27,13 +27,16 @@
   // push total profits to google sheets for exec dashboards
   const totals = api.run("this.generate_region_totals",{data: records_with_inventory_warning});
   console.log(totals);
-  const res = api.run("this.ship_totals_to_google_sheets",{data: totals});
-  // if (!res.success) {
-  //   console.log("error with low inventory");
-  // }
+
+  let res = api.run("this.ship_totals_to_google_sheets",{totals: totals})[0];
+  if (!res.success) {
+    console.log("error with updating google spreadsheets");
+  }
   
-//   // push all to data warehouse
-//   res = api.run("this.ship_new_records", {data: records_with_inventory});  
+  return res;
+  
+   // push all to data warehouse
+   res = api.run("this.ship_new_records", {data: records_with_inventory});  
   
 }
 

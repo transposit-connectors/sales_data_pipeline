@@ -64,11 +64,6 @@
           "lang": "js"
         }
       }, {
-        "id": "abort_multipart_upload",
-        "tql": {
-          "tql": "SELECT * FROM aws_s3.abort_multipart_upload\n  WHERE Bucket='<required_string>'\n  AND Key='<required_string>'\n  AND uploadId='<required_string>'\n  AND x-amz-request-payer='requester'\n\n/*\n * For sample code and reference material, visit\n * https://www.transposit.com/docs/get-started/sql-quickstart\n */"
-        }
-      }, {
         "id": "load_file",
         "function": {
           "parameters": [{
@@ -150,8 +145,36 @@
       }, {
         "id": "ship_totals_to_google_sheets",
         "function": {
+          "parameters": [{
+            "name": "totals",
+            "type": "ARRAY",
+            "required": true
+          }],
           "js": "ship_totals_to_google_sheets.js",
           "lang": "js"
+        }
+      }, {
+        "id": "update_sheet_values",
+        "tql": {
+          "parameters": [{
+            "name": "spreadsheet_id",
+            "type": "STRING",
+            "required": true
+          }, {
+            "name": "range",
+            "type": "STRING",
+            "required": true
+          }, {
+            "name": "values",
+            "type": "ARRAY",
+            "required": true
+          }],
+          "tql": "SELECT * FROM google_sheets.update_sheet_values\n  WHERE range=@range\n  AND spreadsheetId=@spreadsheet_id\n  AND valueInputOption = 'RAW'\n  AND $body=(SELECT {\n    'majorDimension' : 'COLUMNS', -- see https://www.transposit.com/docs/references/connectors/google-sheets-documentation/#update_sheet_values\n    'values' : @values,\n    'range' : @range,\n  })\n"
+        }
+      }, {
+        "id": "update_dataset",
+        "tql": {
+          "tql": "SELECT * FROM gcp_bigquery.update_dataset\n  WHERE datasetId='<required_string>'\n  AND projectId='<required_string>'\n  AND $body=(SELECT {\n    'access' : [ {\n      'view' : {\n        'datasetId' : '<string>',\n        'tableId' : '<string>',\n        'projectId' : '<string>'\n      },\n      'role' : '<string>',\n      'userByEmail' : '<string>',\n      'domain' : '<string>',\n      'specialGroup' : '<string>',\n      'iamMember' : '<string>',\n      'groupByEmail' : '<string>'\n    } ],\n    'lastModifiedTime' : '<int64>',\n    'creationTime' : '<int64>',\n    'kind' : '<string>',\n    'description' : '<string>',\n    'datasetReference' : {\n      'datasetId' : '<string>',\n      'projectId' : '<string>'\n    },\n    'labels' : {\n      '<string>' : '<string>'\n    },\n    'selfLink' : '<string>',\n    'defaultPartitionExpirationMs' : '<int64>',\n    'etag' : '<string>',\n    'location' : '<string>',\n    'defaultTableExpirationMs' : '<int64>',\n    'id' : '<string>',\n    'friendlyName' : '<string>'\n  })\n\n/*\n * For sample code and reference material, visit\n * https://www.transposit.com/docs/get-started/sql-quickstart\n */"
         }
       }],
       "dataConnections": [{
