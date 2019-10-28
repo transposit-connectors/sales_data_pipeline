@@ -96,12 +96,6 @@
           "tql": "SELECT rows FROM gcp_bigquery.execute_query\n  WHERE projectId='sales-data-pipeline'\nAND $body=(SELECT {\n    'query' : 'SELECT * FROM default.orderdata',\n  })\n\n"
         }
       }, {
-        "id": "untitled",
-        "function": {
-          "js": "untitled.js",
-          "lang": "js"
-        }
-      }, {
         "id": "get_existing_records",
         "function": {
           "js": "lookup_dw_rows.js",
@@ -111,10 +105,43 @@
         "id": "add_sales_rep",
         "function": {
           "parameters": [{
-            "name": "records",
-            "type": "ARRAY"
+            "name": "data",
+            "type": "ARRAY",
+            "required": true
           }],
           "js": "add_sales_rep.js",
+          "lang": "js"
+        }
+      }, {
+        "id": "add_inventory",
+        "function": {
+          "parameters": [{
+            "name": "data",
+            "type": "ARRAY",
+            "required": true
+          }],
+          "js": "add_inventory.js",
+          "lang": "js"
+        }
+      }, {
+        "id": "add_inventory_warning",
+        "function": {
+          "parameters": [{
+            "name": "data",
+            "type": "ARRAY",
+            "required": true
+          }],
+          "js": "add_inventory_warning.js",
+          "lang": "js"
+        }
+      }, {
+        "id": "generate_region_totals",
+        "function": {
+          "parameters": [{
+            "name": "data",
+            "type": "ARRAY"
+          }],
+          "js": "generate_region_totals.js",
           "lang": "js"
         }
       }],
