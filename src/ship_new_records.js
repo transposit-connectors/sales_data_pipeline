@@ -10,7 +10,7 @@
     parameters.region = r[0];
     parameters.country = r[1];
     parameters.country = r[1];
-    
+     
     operation.push()
     api.run("this.execute_dw_insert", {});  
     operations.push(one_operation);
