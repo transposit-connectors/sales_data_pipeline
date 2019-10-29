@@ -5,7 +5,7 @@
   
   data.forEach(r => {
     const one_operation = [];
-    operation.append(insert_op_name);
+    one_operation.append(insert_op_name);
     const parameters = {};
     parameters.region = r[0];
     parameters.country = r[1];
