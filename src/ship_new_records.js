@@ -9,35 +9,30 @@
     const parameters = {};
     parameters.region = r[0];
     parameters.country = r[1];
-    parameters.country = r[1];
-    
-    operation.push()
-    api.run("this.execute_dw_insert", {});  
+    parameters.item_type = r[2];
+    parameters.sales_channel = r[3];
+    parameters.order_priority = r[4];
+    parameters.order_date = r[5];
+    parameters.order_id = r[6];
+    parameters.ship_date = r[7];
+    parameters.units_sold = r[8];
+    parameters.unit_price = r[9];
+    parameters.unit_cost = r[10];
+    parameters.total_revenue = r[11];
+    parameters.total_cost = r[12];
+    parameters.unit_profit = r[13];
+    one_operation.push(parameters);
     operations.push(one_operation);
   });
   
-  api.runBulk(operations); 
-  region
-             + @country+","+
-           + @item_type+","+
-           + @sales_channel+","+
-           + @order_priority+","+
-           + @order_date+","+
-           + @order_id+","+
-           + @ship_date+","+
-           + @units_sold+","+
-           + @unit_price+","+
-           + @unit_cost+","+
-           + @total_revenue+","+
-           + @total_cost+","+
-           + @unit_profit+
-  api.run("this.execute_dw_insert", {});
-  return {
-    mission: "complete"
-  };
-}
+  let res = {};
+  try{
+    res = api.runBulk(operations); 
+    res.success = true;
+  } catch (e) {
+    res.success = false;
+    console.log(e);
+  }
 
-/*
- * For sample code and reference material, visit
- * https://www.transposit.com/docs/references/js-operations
- */
+  return res;
+}
