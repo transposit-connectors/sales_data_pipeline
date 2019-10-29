@@ -1,5 +1,6 @@
 (params) => {
   const data = params.data;
+  //console.log(data);
   const operations = [];
   const insert_op_name = "this.execute_dw_insert";
   
@@ -23,9 +24,11 @@
     parameters.total_profit = r[13];
     
     one_operation.parameters = parameters;
+    console.log(parameters);
+    
 
     //operations.push(one_operation);
-    api.run(insert_op_name, parameters);
+    api.run("this.execute_dw_insert", parameters);
   });
   
   let res = {};
