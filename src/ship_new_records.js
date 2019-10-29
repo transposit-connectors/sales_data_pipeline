@@ -1,11 +1,11 @@
 (params) => {
-  const data = params.data;
+  const data = params.data[0];
   const operations = [];
   const insert_op_name = "this.execute_dw_insert";
   
   data.forEach(r => {
     const one_operation = [];
-    operation.push(insert_op_name);
+    operation.append(insert_op_name);
     const parameters = {};
     parameters.region = r[0];
     parameters.country = r[1];
@@ -22,9 +22,9 @@
     parameters.total_cost = r[12];
     parameters.unit_profit = r[13];
 
-    one_operation.push(parameters);
+    one_operation.append(parameters);
 
-    operations.push(one_operation);
+    operations.append(one_operation);
   });
   
   let res = {};
