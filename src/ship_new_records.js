@@ -28,7 +28,11 @@
     
 
     //operations.push(one_operation);
-    api.run("this.execute_dw_insert", parameters);
+    try {
+      api.run("this.execute_dw_insert", parameters);
+    } catch (e) {
+      console.log(e);
+    }
   });
   
   let res = {};
