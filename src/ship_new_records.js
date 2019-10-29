@@ -24,11 +24,11 @@
     
     one_operation.parameters = parameters;
 
-    operations.push(one_operation);
+    //operations.push(one_operation);
     api.run(insert_op_name, parameters);
   });
   
-  // let res = {};
+  let res = {};
   // try{
   //   res = api.runBulk(operations); 
   //   res.success = true;
