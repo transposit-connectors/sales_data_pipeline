@@ -305,6 +305,67 @@
         "tql": {
           "tql": "SELECT * FROM gcp_bigquery.execute_query\n  WHERE projectId='<required_string>'\n  AND $body=(SELECT {\n    'dryRun' : <boolean>,\n    'parameterMode' : '<string>',\n    'useQueryCache' : <boolean>,\n    'queryParameters' : [ {\n      'parameterType' : {\n        'arrayType' : '<string>',\n        'type' : '<string>',\n        'structTypes' : [ {\n          'name' : '<string>',\n          'description' : '<string>',\n          'type' : '<string>'\n        } ]\n      },\n      'name' : '<string>',\n      'parameterValue' : {\n        'structValues' : {\n          '<string>' : { }\n        },\n        'value' : '<string>',\n        'arrayValues' : [ { } ]\n      }\n    } ],\n    'kind' : '<string>',\n    'maxResults' : <integer>,\n    'timeoutMs' : <integer>,\n    'preserveNulls' : <boolean>,\n    'query' : '<string>',\n    'location' : '<string>',\n    'defaultDataset' : {\n      'datasetId' : '<string>',\n      'projectId' : '<string>'\n    },\n    'useLegacySql' : <boolean>\n  })\n\n/*\n * For sample code and reference material, visit\n * https://www.transposit.com/docs/get-started/sql-quickstart\n */"
         }
+      }, {
+        "id": "execute_dw_insert_2",
+        "tql": {
+          "parameters": [{
+            "name": "region",
+            "type": "STRING",
+            "required": true
+          }, {
+            "name": "country",
+            "type": "STRING",
+            "required": true
+          }, {
+            "name": "item_type",
+            "type": "STRING",
+            "required": true
+          }, {
+            "name": "sales_channel",
+            "type": "STRING",
+            "required": true
+          }, {
+            "name": "order_priority",
+            "type": "STRING",
+            "required": true
+          }, {
+            "name": "order_id",
+            "type": "INTEGER",
+            "required": true
+          }, {
+            "name": "ship_date",
+            "type": "STRING",
+            "required": true
+          }, {
+            "name": "units_sold",
+            "type": "INTEGER",
+            "required": true
+          }, {
+            "name": "unit_price",
+            "type": "NUMBER",
+            "required": true
+          }, {
+            "name": "total_revenue",
+            "type": "NUMBER",
+            "required": true
+          }, {
+            "name": "unit_cost",
+            "type": "NUMBER",
+            "required": true
+          }, {
+            "name": "total_cost",
+            "type": "NUMBER",
+            "required": true
+          }, {
+            "name": "total_profit",
+            "type": "NUMBER",
+            "required": true
+          }, {
+            "name": "order_date",
+            "type": "STRING"
+          }],
+          "tql": "SELECT * FROM gcp_bigquery.execute_query\n  WHERE projectId='sales-data-pipeline'\nAND $body=(SELECT {\n    'useLegacySql' : false,\n    'query' : \"INSERT into `default.orderdata` (Region, Country, Item_Type, Sales_Channel, Order_Priority, Order_Date, Order_ID, Ship_Date, Units_Sold, Unit_Price, Unit_Cost, Total_Revenue, Total_Cost, Total_Profit) VALUES ('a','b','c','d','e','2010-10-10',111,'2010-01-01',1,2.0,3.0,4.0,5.0,6.0)\" \n         \n  })\n-- \n  -- {\n    -- \"Region\": @region,\n    -- \"Country\": @country,\n    -- \"Item_Type\": @item_type,\n    -- \"Sales_Channel\": @sales_channel,\n    -- \"Order_Priority\": @order_priority,\n    -- \"Order_Date\": @order_date,\n    -- \"Order_ID\": @order_id,\n    -- \"Ship_Date\": @ship_date,\n    -- \"Units_Sold\": @units_sold,\n    -- \"Unit_Price\": @unit_price,\n    -- \"Unit_Cost\": @unit_cost,\n    -- \"Total_Revenue\": @total_revenue,\n    -- \"Total_Cost\": @total_cost,\n    -- \"Total_Profit\": @total_profit\n  -- },"
+        }
       }],
       "dataConnections": [{
         "ref": "slack_identify.raw",
