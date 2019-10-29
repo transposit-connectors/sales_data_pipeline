@@ -25,16 +25,17 @@
     one_operation.parameters = parameters;
 
     operations.push(one_operation);
+    api.run(insert_op_name, parameters);
   });
   
-  let res = {};
-  try{
-    res = api.runBulk(operations); 
-    res.success = true;
-  } catch (e) {
-    res.success = false;
-    console.log(e);
-  }
+  // let res = {};
+  // try{
+  //   res = api.runBulk(operations); 
+  //   res.success = true;
+  // } catch (e) {
+  //   res.success = false;
+  //   console.log(e);
+  // }
 
   return res;
 }
