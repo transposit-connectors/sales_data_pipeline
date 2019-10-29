@@ -13,9 +13,9 @@
     parameters.item_type = r[2];
     parameters.sales_channel = r[3];
     parameters.order_priority = r[4];
-    parameters.order_date = r[5];
+    parameters.order_date = '2010-10-10'; //r[5].replace(/\//g,"-");
     parameters.order_id = parseInt(r[6]);
-    parameters.ship_date = r[7];
+    parameters.ship_date = '2010-10-10'; //r[7].replace(/\//g,"-");
     parameters.units_sold = parseInt(r[8]);
     parameters.unit_price = parseFloat(r[9]);
     parameters.unit_cost = parseFloat(r[10]);
