@@ -5,7 +5,7 @@
   
   data.forEach(r => {
     const one_operation = [];
-    one_operation.append(insert_op_name);
+    one_operation.push(insert_op_name);
     const parameters = {};
     parameters.region = r[0];
     parameters.country = r[1];
@@ -22,9 +22,9 @@
     parameters.total_cost = r[12];
     parameters.unit_profit = r[13];
 
-    one_operation.append(parameters);
+    one_operation.push(parameters);
 
-    operations.append(one_operation);
+    operations.push(one_operation);
   });
   
   let res = {};
