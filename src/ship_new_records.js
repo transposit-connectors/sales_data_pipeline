@@ -21,7 +21,9 @@
     parameters.total_revenue = r[11];
     parameters.total_cost = r[12];
     parameters.unit_profit = r[13];
+
     one_operation.push(parameters);
+
     operations.push(one_operation);
   });
   
