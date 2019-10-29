@@ -62,7 +62,8 @@
           }],
           "js": "pipeline_top.js",
           "lang": "js"
-        }
+        },
+        "requestTimeoutMillis": 300000
       }, {
         "id": "load_file",
         "function": {
