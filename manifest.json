@@ -172,9 +172,62 @@
           "tql": "SELECT * FROM google_sheets.update_sheet_values\n  WHERE range=@range\n  AND spreadsheetId=@spreadsheet_id\n  AND valueInputOption = 'RAW'\n  AND $body=(SELECT {\n    'majorDimension' : 'COLUMNS', -- see https://www.transposit.com/docs/references/connectors/google-sheets-documentation/#update_sheet_values\n    'values' : @values,\n    'range' : @range,\n  })\n"
         }
       }, {
-        "id": "update_dataset",
+        "id": "execute_dw_insert",
         "tql": {
-          "tql": "SELECT * FROM gcp_bigquery.update_dataset\n  WHERE datasetId='<required_string>'\n  AND projectId='<required_string>'\n  AND $body=(SELECT {\n    'access' : [ {\n      'view' : {\n        'datasetId' : '<string>',\n        'tableId' : '<string>',\n        'projectId' : '<string>'\n      },\n      'role' : '<string>',\n      'userByEmail' : '<string>',\n      'domain' : '<string>',\n      'specialGroup' : '<string>',\n      'iamMember' : '<string>',\n      'groupByEmail' : '<string>'\n    } ],\n    'lastModifiedTime' : '<int64>',\n    'creationTime' : '<int64>',\n    'kind' : '<string>',\n    'description' : '<string>',\n    'datasetReference' : {\n      'datasetId' : '<string>',\n      'projectId' : '<string>'\n    },\n    'labels' : {\n      '<string>' : '<string>'\n    },\n    'selfLink' : '<string>',\n    'defaultPartitionExpirationMs' : '<int64>',\n    'etag' : '<string>',\n    'location' : '<string>',\n    'defaultTableExpirationMs' : '<int64>',\n    'id' : '<string>',\n    'friendlyName' : '<string>'\n  })\n\n/*\n * For sample code and reference material, visit\n * https://www.transposit.com/docs/get-started/sql-quickstart\n */"
+          "parameters": [{
+            "name": "region",
+            "type": "STRING",
+            "required": true
+          }, {
+            "name": "country",
+            "type": "STRING",
+            "required": true
+          }, {
+            "name": "item_type",
+            "type": "STRING",
+            "required": true
+          }, {
+            "name": "sales_channel",
+            "type": "STRING",
+            "required": true
+          }, {
+            "name": "order_priority",
+            "type": "STRING",
+            "required": true
+          }, {
+            "name": "order_id",
+            "type": "STRING",
+            "required": true
+          }, {
+            "name": "ship_date",
+            "type": "STRING",
+            "required": true
+          }, {
+            "name": "units_sold",
+            "type": "STRING",
+            "required": true
+          }, {
+            "name": "unit_price",
+            "type": "STRING",
+            "required": true
+          }, {
+            "name": "total_revenue",
+            "type": "STRING",
+            "required": true
+          }, {
+            "name": "unit_cost",
+            "type": "STRING",
+            "required": true
+          }, {
+            "name": "total_cost",
+            "type": "STRING",
+            "required": true
+          }, {
+            "name": "total_profit",
+            "type": "STRING",
+            "required": true
+          }],
+          "tql": "SELECT rows FROM gcp_bigquery.execute_query\n  WHERE projectId='sales-data-pipeline'\nAND $body=(SELECT {\n    'query' : 'INSERT into default.orderdata (Region, Country, Item_Type, Sales_Channel, Order_Priority, Order_Date, Order_ID, Ship_Date, Units_Sold, Unit_Price, Unit_Cost, Total_Revenue, Total_Cost, Total_Profit) VALUES (' + @region+\",\"+ \n           + @country+\",\"+\n           + @item_type+\",\"+\n           + @sales_channel+\",\"+\n           + @order_priority+\",\"+\n           + @order_date+\",\"+\n           + @order_id+\",\"+\n           + @ship_date+\",\"+\n           + @units_sold+\",\"+\n           + @unit_price+\",\"+\n           + @unit_cost+\",\"+\n           + @total_revenue+\",\"+\n           + @total_cost+\",\"+\n           + @unit_profit+\n           ')',\n  })\n-- \n  -- {\n    -- \"Region\": @region,\n    -- \"Country\": @country,\n    -- \"Item_Type\": @item_type,\n    -- \"Sales_Channel\": @sales_channel,\n    -- \"Order_Priority\": @order_priority,\n    -- \"Order_Date\": @order_date,\n    -- \"Order_ID\": @order_id,\n    -- \"Ship_Date\": @ship_date,\n    -- \"Units_Sold\": @units_sold,\n    -- \"Unit_Price\": @unit_price,\n    -- \"Unit_Cost\": @unit_cost,\n    -- \"Total_Revenue\": @total_revenue,\n    -- \"Total_Cost\": @total_cost,\n    -- \"Total_Profit\": @total_profit\n  -- },"
         }
       }],
       "dataConnections": [{
