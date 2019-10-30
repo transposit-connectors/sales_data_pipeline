@@ -35,11 +35,6 @@
   // console.log(records_with_inventory.length);
   // push all to data warehouse
   // console.log(records_with_inventory[0]);
-  res = api.run("this.ship_new_records", {data: [ records_with_inventory[0] ] }); //records_with_inventory[0] 
+  res = api.run("this.ship_new_records", {data: records_with_inventory }); 
   return res;
 }
-
-/*
- * For sample code and reference material, visit
- * https://www.transposit.com/docs/references/js-operations
- */

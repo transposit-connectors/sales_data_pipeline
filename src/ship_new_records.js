@@ -5,7 +5,8 @@
   const operations = [];
   const insert_op_name = "this.execute_dw_insert";
   
-  data.forEach(r => {
+  let count = 0;
+  for (let r of data) {
     const parameters = {};
     parameters.region = r[0];
     parameters.country = r[1];
@@ -31,14 +32,24 @@
         +parameters.total_cost+", "+parameters.total_profit+")";
     sql = sql + '"' +bqsql + '"' + "  })";
     
+    console.log(sql);
     let success = true;
     try {
       api.query(sql,parameters);
+      count++;
     } catch (e) {
       console.log(e);
       success = false;
     }  
-  });
+    
+    console.log(success);
+    if (!success) {
+      break;
+    }
+  }
   
-  return res;
+  return {
+    success: count == data.length,
+    count: count
+  };
 }
