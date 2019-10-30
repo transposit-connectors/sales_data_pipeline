@@ -34,30 +34,24 @@ You need to set up the following external resources:
   * Create a [BigQuery table]. Suggested name: `orderdata`. Create the table from a file upload (of the sample sales data) and select 'Auto detect' for the schema, so that the schema gets picked up from the CSV file.
   * Delete all the rows from the newly uploaded table, so we can add them with this app. `delete from \`default.orderdata\` where 1=1` (or just delete some of them: `delete from \`default.orderdata\` where Region='Europe'`)
 
+### Transposit 
+
+Create a [free Transposit account](https://console.transposit.com/).
+
 ## Running it
 
+* Fork the app [https://console.transposit.com/t/transposit-sample/sales_data_pipeline](https://console.transposit.com/t/transposit-sample/sales_data_pipeline) (find the Fork button at the top of the editor view).
+* Navigate to **Code** and review the operations. You may want to look closely at the `scheduled_task` operation, which contains the S3 manipulations, the `pipeline_top` operation which documents the pipeline, and the `add_sales_rep` operation, which adds in some sales data. 
+* While you are looking at the operations, increase the `Custom timeout` to `300000` (5 minutes) for the `scheduled_task` operation by going to the Properties tab.
+* Navigate to **Deploy > Production Keys** and add keys for all the data connectors.
+* Navigate to **Deploy > Environment Variables** and fill out environment variables based on the external resources you created above.
+* Navigate to **Deploy > Scheduled Tasks** and create a new scheduled task. Run the `scheduled_task` operation every 10 minutes: `37 /10 * ? * *`
 
-add production keys for the three data connectors
-
-create a big table dataset and table (I did this manually)
-
-timeout
-
-set up google sheet
-
-use different dataset, need to change the logic and the insert statements. based on arrays
-
-scheduled task
-
-http://eforexcel.com/wp/downloads-18-sample-csv-files-data-sets-for-testing-sales/
-
-inline doco
-
-tiemouts/idempotent
-escaping the bigquery query
+You can also run the pipeline by clicking "Run now & show log". You should then see records start to appear in the BigQuery table.
 
 ## Go further
 
 * Take action when the inventory levels are too low (send an [email with SendGrid](/docs/references/connectors/sendgrid-documentation/) or [post to Slack](/docs/references/connectors/slack-documentation/))
 * Push the logic for adding the sales rep to [a lambda](/blog/2019.10.07-basics-of-lambda/) and call that instead of adding the data in a Transposit operation.
-
+* Add the top sales rep to the executive dashboard spreadsheet.
+* Fork the application again and set up a test environment with different external resources. Write an operation that samples the datawarehouse with a known S3 input to make sure that the pipeline operates correctly.
