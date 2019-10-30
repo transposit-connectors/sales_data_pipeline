@@ -210,7 +210,6 @@
         "ref": "slack.raw"
       }, {
         "ref": "aws_s3",
-        "requireConsumerSignin": true,
         "overrides": {
           "aws": {
             "region": "us-west-2",
