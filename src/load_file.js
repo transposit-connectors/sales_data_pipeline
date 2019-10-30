@@ -88,20 +88,4 @@
   })[0];
   const results = CSVToArray.parse(file_contents);
   return results.slice(1, results.length);
-
-  //   const cols = results[0];
-
-  //   let data = results.slice(1, results.length);
-
-  //   let processed_data = data.map((row) => {
-  //     let obj = {};
-  //     row.forEach(function(item, index) {
-  //       let label = cols[index];
-  //       obj[label] = row[index];
-  //       return obj;
-  //     });
-  //     return obj;
-  //   })
-
-  //   return processed_data;
 }
