@@ -220,7 +220,12 @@
       }],
       "javascriptAPIVersion": "3",
       "source": "src",
-      "userSettingsDisplay": "GENERATED"
+      "userSettingsDisplay": "GENERATED",
+      "appSettings": [{
+        "name": "executive_report_google_sheet",
+        "description": "The sheet id for the google spreadsheet to which we copy total data (something like '1io8WEVl7MSk_RzmmWaMqofHMCA3f9X63R_k1g9EeD5A')",
+        "type": "STRING"
+      }]
     },
     "description": "Moves data from S3 through several processing steps to BigQuery and Google Sheets",
     "displayName": "Sales Data Pipeline"
