@@ -8,11 +8,11 @@
   let count = 0;
   for (let r of data) {
     const parameters = {};
-    parameters.region = r[0];
-    parameters.country = r[1];
-    parameters.item_type = r[2];
-    parameters.sales_channel = r[3];
-    parameters.order_priority = r[4];
+    parameters.region = r[0].replace(/'/g, "\\\'");
+    parameters.country = r[1].replace(/'/g, "\\\'");
+    parameters.item_type = r[2].replace(/'/g, "\\\'");
+    parameters.sales_channel = r[3].replace(/'/g, "\\\'");
+    parameters.order_priority = r[4].replace(/'/g, "\\\'");
     parameters.order_date = moment(r[5]).format('Y-M-D');
     parameters.order_id = parseInt(r[6]);
     parameters.ship_date = moment(r[7]).format('Y-M-D');
