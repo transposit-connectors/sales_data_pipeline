@@ -11,7 +11,8 @@
         "title": "BigQuery for the data warehouse where all sales records live."
       }, {
         "name": "transposit/google_sheets:v1.*.*",
-        "alias": "google_sheets"
+        "alias": "google_sheets",
+        "title": "Google sheet which drives executive dashboard, only totals sent here."
       }],
       "operations": [{
         "id": "pipeline_top",
