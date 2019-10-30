@@ -10,7 +10,7 @@
     return totals[k];
   });
   const values = [first_column, second_column];
-  
+
   let res = {};
   try {
     api.run("this.update_sheet_values", {

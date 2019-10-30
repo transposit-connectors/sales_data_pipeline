@@ -1,10 +1,8 @@
 (params) => {
-  const dw_rows = api.run("this.execute_dw_query",
-                          {
-    big_query_project_id: env.get('big_query_project_id'),                        
+  const dw_rows = api.run("this.execute_dw_query", {
+    big_query_project_id: env.get('big_query_project_id'),
     table: env.get('big_query_table_name')
-                          }
-                         )[0].rows;
+  })[0].rows;
   const arr = [];
 
   // convert to row based format from API

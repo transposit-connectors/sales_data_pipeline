@@ -21,10 +21,10 @@
     parameters.total_revenue = parseFloat(r[11]);
     parameters.total_cost = parseFloat(r[12]);
     parameters.total_profit = parseFloat(r[13]);
-    
-    let sql = "SELECT * FROM gcp_bigquery.execute_query WHERE projectId='"+bq_project_id+"' AND $body=(SELECT { 'useLegacySql' : false, 'query' : ";
 
-    const bqsql = "INSERT into `"+bq_table_name+"` (Region, Country, Item_Type, Sales_Channel, Order_Priority, Order_Date, Order_ID, Ship_Date, Units_Sold, Unit_Price, Unit_Cost, Total_Revenue, Total_Cost, Total_Profit) VALUES ('" +
+    let sql = "SELECT * FROM gcp_bigquery.execute_query WHERE projectId='" + bq_project_id + "' AND $body=(SELECT { 'useLegacySql' : false, 'query' : ";
+
+    const bqsql = "INSERT into `" + bq_table_name + "` (Region, Country, Item_Type, Sales_Channel, Order_Priority, Order_Date, Order_ID, Ship_Date, Units_Sold, Unit_Price, Unit_Cost, Total_Revenue, Total_Cost, Total_Profit) VALUES ('" +
       parameters.region + "','" + parameters.country + "','" + parameters.item_type + "', '" + parameters.sales_channel + "', '" +
       parameters.order_priority + "', '" + parameters.order_date + "', " + parameters.order_id + ", '" + parameters.ship_date + "', " +
       parameters.units_sold + ", " + parameters.unit_price + ", " + parameters.unit_cost + ", " + parameters.total_revenue + ", " +
