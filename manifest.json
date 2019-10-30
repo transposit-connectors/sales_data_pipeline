@@ -233,6 +233,10 @@
         "name": "big_query_project_id",
         "description": "The big query project id created in the Google console",
         "type": "STRING"
+      }, {
+        "name": "big_query_table_name",
+        "description": "The name of the table your sales data lives in, including the dataset. Something like 'default.orderdata'",
+        "type": "STRING"
       }]
     },
     "description": "Moves data from S3 through several processing steps to BigQuery and Google Sheets",
