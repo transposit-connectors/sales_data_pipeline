@@ -12,23 +12,6 @@
         "alias": "google_sheets"
       }],
       "operations": [{
-        "id": "webhook",
-        "function": {
-          "parameters": [{
-            "name": "http_event",
-            "default": {
-              "text": "{   \"query_parameters\": {     \"api_key\": \"XXX\"   },   \"http_method\": \"POST\",   \"parsed_body\": {     \"channel_name\": \"XXX\",     \"user_id\": \"UXXX\",     \"user_name\": \"iggy\",     \"trigger_id\": \"XXX\",     \"team_domain\": \"my_domain\",     \"team_id\": \"TXXX\",     \"text\": \"\",     \"channel_id\": \"DXXX\",     \"command\": \"/test\",     \"token\": \"XXX\",     \"response_url\": \"https://hooks.slack.com/commands/TXXX/XXX/XXX\"   },   \"body\": \"token=XXX&team_id=TXXX&team_domain=my_domain&channel_id=DXXX&channel_name=XXX&user_id=UXXX&user_name=iggy&command=%2Ftest&text=&response_url=https%3A%2F%2Fhooks.slack.com%2Fcommands%2FTXXX%2FXXX%2FXXX&trigger_id=XXX\" }"
-            },
-            "type": "OBJECT"
-          }],
-          "js": "webhook.js",
-          "lang": "js"
-        },
-        "access": {
-          "requireApiKey": true,
-          "webhook": true
-        }
-      }, {
         "id": "pipeline_top",
         "function": {
           "parameters": [{
@@ -164,6 +147,38 @@
         "id": "scheduled_task",
         "function": {
           "js": "scheduled_task.js",
+          "lang": "js"
+        }
+      }, {
+        "id": "find_files_to_process",
+        "tql": {
+          "parameters": [{
+            "name": "bucket",
+            "type": "STRING"
+          }],
+          "tql": "SELECT * FROM aws_s3.list_objects_v2\n  WHERE Bucket = @bucket \n  AND prefix = 'upload' \n  AND Size > 0 -- avoid folders"
+        }
+      }, {
+        "id": "move_processed_files",
+        "function": {
+          "parameters": [{
+            "name": "upload_prefix",
+            "type": "STRING",
+            "required": true
+          }, {
+            "name": "processed_prefix",
+            "type": "STRING",
+            "required": true
+          }, {
+            "name": "bucket",
+            "type": "STRING",
+            "required": true
+          }, {
+            "name": "key",
+            "type": "STRING",
+            "required": true
+          }],
+          "js": "move_processed_files.js",
           "lang": "js"
         }
       }],

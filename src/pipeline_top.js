@@ -24,7 +24,7 @@
   });
   if (new_records.length == 0) {
     console.log("no records to be processed");
-    return;
+    return { success : true };
   }
 
   // add sales rep based on channel and region
@@ -55,6 +55,7 @@
   })[0];
   if (!res.success) {
     console.log("error with updating google spreadsheets");
+    // ok with this
   }
 
   // push all to data warehouse
