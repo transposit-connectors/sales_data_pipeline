@@ -3,7 +3,8 @@
     "transposit": {
       "dependencies": [{
         "name": "transposit/aws_s3:v3.*.*",
-        "alias": "aws_s3"
+        "alias": "aws_s3",
+        "title": "S3 for the source data"
       }, {
         "name": "transposit/gcp_bigquery:v1.*.*",
         "alias": "gcp_bigquery"
