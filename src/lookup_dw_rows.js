@@ -3,6 +3,12 @@
     big_query_project_id: env.get('big_query_project_id'),
     table: env.get('big_query_table_name')
   })[0].rows;
+  
+  if (!dw_rows) {
+    // empty table
+    return [];
+  }
+  
   const arr = [];
 
   // convert to row based format from API
