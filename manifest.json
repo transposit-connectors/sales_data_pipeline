@@ -16,6 +16,7 @@
       }],
       "operations": [{
         "id": "pipeline_top",
+        "description": "Top of the pipeline, processes one file of records.",
         "function": {
           "parameters": [{
             "name": "file_url",
@@ -29,6 +30,7 @@
         "requestTimeoutMillis": 300000
       }, {
         "id": "load_file",
+        "description": "Loads csv file",
         "function": {
           "parameters": [{
             "name": "file_url",
@@ -68,12 +70,14 @@
         }
       }, {
         "id": "get_existing_records",
+        "description": "Gets existing records from DW, convert to array.",
         "function": {
           "js": "lookup_dw_rows.js",
           "lang": "js"
         }
       }, {
         "id": "add_sales_rep",
+        "description": "Adds sales rep data. Mock for now, could pull from different system.",
         "function": {
           "parameters": [{
             "name": "data",
@@ -85,6 +89,7 @@
         }
       }, {
         "id": "add_inventory",
+        "description": "Adds our inventory. Mock for now, but could reach out to existing system.",
         "function": {
           "parameters": [{
             "name": "data",
@@ -96,6 +101,7 @@
         }
       }, {
         "id": "add_inventory_warning",
+        "description": "Adds inventory warning. Mock for now.",
         "function": {
           "parameters": [{
             "name": "data",
@@ -117,6 +123,7 @@
         }
       }, {
         "id": "ship_totals_to_google_sheets",
+        "description": "Pushes totals to the Google spreadsheet.",
         "function": {
           "parameters": [{
             "name": "totals",
@@ -146,6 +153,7 @@
         }
       }, {
         "id": "ship_new_records",
+        "description": "Pushes new records to bigQuery DW.",
         "function": {
           "parameters": [{
             "name": "data",
@@ -157,6 +165,7 @@
         }
       }, {
         "id": "scheduled_task",
+        "description": "The operation which gets run regularly.",
         "function": {
           "js": "scheduled_task.js",
           "lang": "js"
