@@ -221,6 +221,8 @@
       "javascriptAPIVersion": "3",
       "source": "src",
       "userSettingsDisplay": "GENERATED"
-    }
+    },
+    "description": "Moves data from S3 through several processing steps to BigQuery and Google Sheets",
+    "displayName": "Sales Data Pipeline"
   }
 }
