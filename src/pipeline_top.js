@@ -32,9 +32,8 @@
   if (!res.success) {
     console.log("error with updating google spreadsheets");
   }
-  // console.log(records_with_inventory.length);
+
   // push all to data warehouse
-  // console.log(records_with_inventory[0]);
   res = api.run("this.ship_new_records", {data: records_with_inventory }); 
   return res;
 }
