@@ -7,7 +7,8 @@
         "title": "S3 for the source data"
       }, {
         "name": "transposit/gcp_bigquery:v1.*.*",
-        "alias": "gcp_bigquery"
+        "alias": "gcp_bigquery",
+        "title": "BigQuery for the data warehouse where all sales records live."
       }, {
         "name": "transposit/google_sheets:v1.*.*",
         "alias": "google_sheets"
