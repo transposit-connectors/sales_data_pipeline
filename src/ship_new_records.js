@@ -1,9 +1,6 @@
 (params) => {
   const moment = require('moment.js');
   const data = params.data;
-  //console.log(data);
-  const operations = [];
-  const insert_op_name = "this.execute_dw_insert";
 
   let count = 0;
   for (let r of data) {
@@ -32,7 +29,7 @@
       parameters.total_cost + ", " + parameters.total_profit + ")";
     sql = sql + '"' + bqsql + '"' + "  })";
 
-    console.log(sql);
+    // console.log(sql);
     let success = true;
     try {
       api.query(sql, parameters);
@@ -42,7 +39,7 @@
       success = false;
     }
 
-    console.log(success);
+    // console.log(success);
     if (!success) {
       break;
     }
