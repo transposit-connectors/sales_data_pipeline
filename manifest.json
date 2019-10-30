@@ -52,7 +52,16 @@
       }, {
         "id": "execute_dw_query",
         "tql": {
-          "tql": "SELECT rows FROM gcp_bigquery.execute_query\n  WHERE projectId='sales-data-pipeline'\nAND $body=(SELECT {\n    'query' : 'SELECT * FROM default.orderdata',\n  })\n\n"
+          "parameters": [{
+            "name": "big_query_project_id",
+            "type": "STRING",
+            "required": true
+          }, {
+            "name": "table",
+            "type": "STRING",
+            "required": true
+          }],
+          "tql": "SELECT rows FROM gcp_bigquery.execute_query\n  WHERE projectId=@big_query_project_id\nAND $body=(SELECT {\n    'query' : 'SELECT * FROM '+@table,\n  })\n\n"
         }
       }, {
         "id": "get_existing_records",
@@ -148,7 +157,8 @@
         "function": {
           "js": "scheduled_task.js",
           "lang": "js"
-        }
+        },
+        "requestTimeoutMillis": 300000
       }, {
         "id": "find_files_to_process",
         "tql": {

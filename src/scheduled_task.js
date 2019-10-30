@@ -1,5 +1,5 @@
 (params) => {
-  const bucket = "mooreds-order-uploads";
+  const bucket = env.get("order_bucket");
   const upload_prefix = "upload";
   const processed_prefix = "processed";
   const files = api.run("this.find_files_to_process", {
