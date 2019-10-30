@@ -298,7 +298,7 @@
             "name": "order_date",
             "type": "STRING"
           }],
-          "tql": "SELECT * FROM gcp_bigquery.execute_query\n  WHERE projectId='sales-data-pipeline'\n  \nAND $body=(SELECT {\n    'query' : \"insert into `default.orderdata` (Region) VALUES ('a')\",\n    'useLegacySql' : false\n});"
+          "tql": "SELECT * FROM gcp_bigquery.execute_query\n  WHERE projectId='sales-data-pipeline'\n  \nAND $body=(SELECT {\n    'query' : \"insert into `default.orderdata` (Region) VALUES (\"+@total_revenue+\")\",\n    'useLegacySql' : false\n});"
         }
       }, {
         "id": "execute_query",
