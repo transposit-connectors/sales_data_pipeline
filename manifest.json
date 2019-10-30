@@ -225,6 +225,10 @@
         "name": "executive_report_google_sheet",
         "description": "The sheet id for the google spreadsheet to which we copy total data (something like '1io8WEVl7MSk_RzmmWaMqofHMCA3f9X63R_k1g9EeD5A')",
         "type": "STRING"
+      }, {
+        "name": "order_bucket",
+        "description": "The bucket that the orders go into. Needs to have an upload and a processed folder.",
+        "type": "STRING"
       }]
     },
     "description": "Moves data from S3 through several processing steps to BigQuery and Google Sheets",
