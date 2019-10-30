@@ -24,7 +24,9 @@
   });
   if (new_records.length == 0) {
     console.log("no records to be processed");
-    return { success : true };
+    return {
+      success: true
+    };
   }
 
   // add sales rep based on channel and region
