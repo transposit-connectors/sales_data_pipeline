@@ -1,4 +1,5 @@
 # Sales Data Pipeline
+
 ## What is this
 
 This is a sample data pipeline implemented using the Transposit platform.
