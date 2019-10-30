@@ -22,6 +22,10 @@
   const new_records = file_records.filter(r => {
     return ids_to_be_processed.includes(r[order_id_index])
   });
+  if (new_records.length == 0) {
+    console.log("no records to be processed");
+    return;
+  }
 
   // add sales rep based on channel and region
   const records_with_sales_rep = api.run("this.add_sales_rep", {
